@@ -61,6 +61,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(reply)
 
 # Photo handler (OpenAI Vision)
+# Photo handler (OpenAI Vision)
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Analyze user photo using OpenAI Vision."""
     photo = update.message.photo[-1]  # highest resolution
@@ -87,7 +88,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "role": "user",
                     "content": [
                         {
-                            "type": "input_image",
+                            "type": "image_url",
                             "image_url": {
                                 "url": f"data:image/jpeg;base64,{b64_image}"
                             },
@@ -107,11 +108,14 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         reply = completion.choices[0].message.content.strip()
 
-    except Exception:
+    except Exception as e:
         logging.exception("Error while processing image with OpenAI Vision")
+        # Geçici debug için istersen hatayı da görebilirsin:
+        # reply = f"Error while analyzing the photo: {e}"
         reply = "There was an issue analyzing the photo. Please try again."
 
     await update.message.reply_text(reply)
+
 
 def main():
     if not TOKEN:
