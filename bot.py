@@ -1,5 +1,6 @@
 import logging
 import os
+import base64
 from io import BytesIO
 
 from PIL import Image
@@ -14,7 +15,7 @@ from telegram.ext import (
 
 from openai import OpenAI
 
-# Ortam değişkenlerinden alıyoruz (terminalde set edeceksin)
+# Getting environment variables (set them in Railway or your local terminal)
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -23,14 +24,14 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-# /start komutu
+# /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "Merhaba! 👋 Ben ChatGPT destekli Telegram botunum.\n"
-        "Bana metin ya da fotoğraf gönderebilirsin."
+        "Hello! 👋 I am your ChatGPT-powered Telegram bot.\n"
+        "You can send me text or photos."
     )
 
-# Metin handler (ChatGPT ile sohbet)
+# Text handler (ChatGPT-style conversation)
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text
 
@@ -43,9 +44,8 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 {
                     "role": "system",
                     "content": (
-                        "You are a friendly Turkish chatbot talking inside a Telegram bot. "
-                        "Explain things clearly and briefly, and feel free to answer in Turkish "
-                        "unless the user clearly writes in another language."
+                        "You are a friendly English-speaking chatbot inside a Telegram bot. "
+                        "Explain things clearly and naturally. Respond in English unless the user uses another language."
                     ),
                 },
                 {"role": "user", "content": user_text},
@@ -55,29 +55,70 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply = completion.choices[0].message.content.strip()
 
     except Exception:
-        logging.exception("Error while talking to OpenAI")
-        reply = "Şu an OpenAI ile konuşurken bir hata oldu, lütfen biraz sonra tekrar dene."
+        logging.exception("Error while communicating with OpenAI")
+        reply = "Something went wrong while contacting OpenAI. Please try again."
 
     await update.message.reply_text(reply)
 
-# Fotoğraf handler (şimdilik sadece boyut bilgisi)
+# Photo handler (OpenAI Vision)
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    photo = update.message.photo[-1]
+    """Analyze user photo using OpenAI Vision."""
+    photo = update.message.photo[-1]  # highest resolution
     file = await photo.get_file()
     byte_arr = await file.download_as_bytearray()
 
-    img = Image.open(BytesIO(byte_arr))
-    width, height = img.size
+    # Convert to base64 for OpenAI Vision
+    b64_image = base64.b64encode(byte_arr).decode("utf-8")
 
-    description = f"{width}x{height} boyutunda bir görsel aldım. Mode: {img.mode}"
-    await update.message.reply_text("Fotoğraf için teşekkürler! " + description)
+    await update.message.chat.send_action(action="typing")
+
+    try:
+        completion = client.chat.completions.create(
+            model="gpt-4.1-mini",   # supports both text + images
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are an image analysis assistant. "
+                        "Always answer in English, and be concise and clear."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "input_image",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{b64_image}"
+                            },
+                        },
+                        {
+                            "type": "text",
+                            "text": (
+                                "Please describe this image in a detailed but concise way. "
+                                "What do you see? What's the environment? "
+                                "Describe objects, mood, and important visual elements."
+                            ),
+                        },
+                    ],
+                },
+            ],
+        )
+
+        reply = completion.choices[0].message.content.strip()
+
+    except Exception:
+        logging.exception("Error while processing image with OpenAI Vision")
+        reply = "There was an issue analyzing the photo. Please try again."
+
+    await update.message.reply_text(reply)
 
 def main():
     if not TOKEN:
-        raise RuntimeError("TELEGRAM_BOT_TOKEN ortam değişkeni tanımlı değil.")
+        raise RuntimeError("TELEGRAM_BOT_TOKEN environment variable is not set.")
 
     if not os.getenv("OPENAI_API_KEY"):
-        raise RuntimeError("OPENAI_API_KEY ortam değişkeni tanımlı değil.")
+        raise RuntimeError("OPENAI_API_KEY environment variable is not set.")
 
     app = ApplicationBuilder().token(TOKEN).build()
 
