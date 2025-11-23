@@ -203,13 +203,15 @@ Check code:
 ruff check .
 
 📸 Screenshots
+<img width="925" height="591" alt="Ekran görüntüsü 2025-11-23 170642" src="https://github.com/user-attachments/assets/b643c077-0940-4060-a8f7-31aaa0db04aa" />
 <img width="1878" height="867" alt="image" src="https://github.com/user-attachments/assets/525b02c6-2eec-46ac-9b6b-5096c4248236" />
 <img width="1887" height="889" alt="image" src="https://github.com/user-attachments/assets/58937937-e81a-46b3-a8d8-eae74c9ecfca" />
 <img width="641" height="766" alt="image" src="https://github.com/user-attachments/assets/04d86051-7f08-46da-9d46-2536ad09d7e4" />
+<img width="1888" height="909" alt="image" src="https://github.com/user-attachments/assets/011e9277-de05-4d5e-b52f-c2a36c235b8b" />
 <img width="1170" height="647" alt="image" src="https://github.com/user-attachments/assets/70841a54-d689-42b2-966a-a46dec66119f" />
 <img width="1137" height="905" alt="image" src="https://github.com/user-attachments/assets/a0770c64-701f-44e2-99d7-c030a9cd593d" />
-<img width="1888" height="909" alt="image" src="https://github.com/user-attachments/assets/011e9277-de05-4d5e-b52f-c2a36c235b8b" />
-<img width="925" height="591" alt="Ekran görüntüsü 2025-11-23 170642" src="https://github.com/user-attachments/assets/b643c077-0940-4060-a8f7-31aaa0db04aa" />
+
+
 
 📚 Medium Article
 
@@ -246,4 +248,5 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
