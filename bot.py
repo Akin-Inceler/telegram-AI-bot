@@ -1,6 +1,7 @@
 import logging
 import os
 import base64
+import requests
 from io import BytesIO
 
 from PIL import Image
@@ -18,6 +19,19 @@ from openai import OpenAI
 # Getting environment variables (set them in Railway or your local terminal)
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+def send_to_n8n(payload: dict):
+    """Send event data to n8n webhook for automation/logging."""
+    webhook_url = os.getenv("N8N_WEBHOOK_URL")
+    if not webhook_url:
+        # If webhook not configured, just skip silently
+        return
+
+    try:
+        requests.post(webhook_url, json=payload, timeout=5)
+    except Exception:
+        logging.exception("Failed to send data to n8n")
+
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -58,7 +72,22 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logging.exception("Error while communicating with OpenAI")
         reply = "Something went wrong while contacting OpenAI. Please try again."
 
+    # Send conversation data to n8n for automation/logging
+    try:
+        send_to_n8n(
+            {
+                "type": "text",
+                "user_id": update.effective_user.id if update.effective_user else None,
+                "username": update.effective_user.username if update.effective_user else None,
+                "message": user_text,
+                "reply": reply,
+            }
+        )
+    except Exception:
+        logging.exception("Error calling send_to_n8n from handle_text")
+
     await update.message.reply_text(reply)
+
 
 # Photo handler (OpenAI Vision)
 # Photo handler (OpenAI Vision)
@@ -114,7 +143,21 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # reply = f"Error while analyzing the photo: {e}"
         reply = "There was an issue analyzing the photo. Please try again."
 
+        # Send photo analysis data to n8n
+    try:
+        send_to_n8n(
+            {
+                "type": "photo",
+                "user_id": update.effective_user.id if update.effective_user else None,
+                "username": update.effective_user.username if update.effective_user else None,
+                "description": reply,
+            }
+        )
+    except Exception:
+        logging.exception("Error calling send_to_n8n from handle_photo")
+
     await update.message.reply_text(reply)
+
 
 
 def main():
