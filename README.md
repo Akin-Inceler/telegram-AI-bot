@@ -220,16 +220,8 @@ A Medium article about the project explains motivation, architecture, challenges
 👉 Link: ([Click!](https://medium.com/@akin2001inceler/building-an-ai-powered-telegram-bot-with-python-openai-n8n-automation-and-railway-deployment-315962da405e))
 
 🧑‍🎓 Student Hub Page
+link
 
-Short summary
-
-GitHub link
-
-Medium link
-
-Screenshots
-
-Project description
 
 ♦ Conclusion
 
@@ -248,6 +240,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
