@@ -217,7 +217,7 @@ ruff check .
 
 A Medium article about the project explains motivation, architecture, challenges, setup steps, and final result.
 
-👉 Link: (insert Medium article URL here after publishing)
+👉 Link: ([insert Medium article URL here after publishing](https://medium.com/@akin2001inceler/building-an-ai-powered-telegram-bot-with-python-openai-n8n-automation-and-railway-deployment-315962da405e))
 
 🧑‍🎓 Student Hub Page
 
@@ -248,5 +248,6 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
