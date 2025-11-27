@@ -181,10 +181,19 @@ Railway automatically rebuilds and restarts the bot on each Git push.
 
 🧪 Testing (pytest)
 
-This repository includes a minimal test:
+🧪 Testing
 
-def test_math():
-    assert 2 + 2 == 4
+This project includes a simple automated test suite using pytest, ensuring that the core components of the Telegram bot are functioning correctly.
+
+✔ What the tests check
+
+The tests focus on basic structural validation:
+
+bot.py imports correctly
+Confirms that the main module loads without errors and contains the required main() function.
+
+Payload structure validation
+Ensures that the data sent to n8n automation contains all required fields (type, user_id, username, message, reply).
 
 
 Run tests with:
@@ -238,6 +247,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
