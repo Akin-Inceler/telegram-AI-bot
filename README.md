@@ -1,4 +1,4 @@
-📦 Telegram AI Bot — Python + OpenAI + n8n Automation + Railway Deployment
+# 📦 Telegram AI Bot — Python + OpenAI + n8n Automation + Railway Deployment
 
 This project is a fully functional, production-ready Telegram bot powered by Python, OpenAI (ChatGPT + Vision), n8n automation, and deployed on Railway.
 The bot can:
@@ -13,7 +13,7 @@ Convert logs into structured CSV files automatically
 
 This README describes the architecture, features, installation steps, automation setup, and deployment details.
 
-♦ Features
+## Features
  1. Telegram chatbot (text responses)
 
 Uses OpenAI’s gpt-4.1-mini model to generate natural English replies.
@@ -34,27 +34,37 @@ The bot runs 24/7 on Railway with environment variables securely stored.
 
 No hardcoded secrets. All keys are loaded from os.getenv.
 
-♦ Architecture Overview
+## Architecture Overview
+
 User (Telegram)
         ↓
+        
 Telegram Bot API
         ↓
+        
 Python Bot (python-telegram-bot)
         ↓
+        
 OpenAI API (ChatGPT + Vision)
         ↓
+        
 n8n Automation Workflow
         ↓
+        
 CSV Log Output (structured conversation logs)
 
-📁 Project Structure
+## 📁 Project Structure
 ├── bot.py                # Main Telegram bot application
+
 ├── requirements.txt      # Dependencies
+
 ├── tests/                # Pytest folder
+
 │   └── test_basic.py     # Example test
+
 └── README.md             # Documentation
 
-🔧 Technologies Used
+## 🔧 Technologies Used
 Component	Technology
 Bot backend	Python 3.x
 Telegram API	python-telegram-bot
@@ -65,19 +75,18 @@ Deployment	Railway
 Code quality	ruff
 Testing	pytest
 
-♦ Environment Variables
+## Environment Variables
 
-Set these in your system or Railway dashboard:
+<img width="1891" height="838" alt="image" src="https://github.com/user-attachments/assets/7f0cc4a8-c226-42f4-a79a-3a16740176fd" />
 
-TELEGRAM_BOT_TOKEN=<your Telegram bot token>
-OPENAI_API_KEY=<your OpenAI API key>
-N8N_WEBHOOK_URL=<Production n8n webhook URL>
+@AkinsAI_bot
+
 
 ▶️ Running Locally
 
 Clone the repository:
 
-git clone https://github.com/<your-username>/<repo>.git
+git clone [https://github.com/<your-username>/<repo>](https://github.com/Akin-Inceler/telegram-AI-bot).git
 cd <repo>
 
 
@@ -105,8 +114,9 @@ Run the bot:
 
 python bot.py
 
-🤖 How the Bot Works (Flow Description)
-1. Text messages
+
+## 🤖 How the Bot Works (Flow Description)
+### 1. Text messages
 
 User sends text
 
@@ -116,7 +126,7 @@ Bot returns reply
 
 Bot sends log to n8n → converted to CSV
 
-2. Photo messages
+### 2. Photo messages
 
 User sends image
 
@@ -128,7 +138,7 @@ Bot returns analysis
 
 Bot logs result to n8n → CSV
 
-🔄 n8n Automation Setup
+## 🔄 n8n Automation Setup
 ✔ Node 1 — Webhook
 
 Method: POST
@@ -175,7 +185,7 @@ Header Row: checked (true)
 
 Result → A properly formatted spreadsheet row.
 
-☁️ Deployment (Railway)
+## ☁️ Deployment (Railway)
 
 Create new Railway project
 
@@ -187,9 +197,9 @@ Deploy
 
 Railway automatically rebuilds and restarts the bot on each Git push.
 
-🧪 Testing (pytest)
+## 🧪 Testing (pytest)
 
-🧪 Testing
+### 🧪 Testing
 
 This project includes a simple automated test suite using pytest, ensuring that the core components of the Telegram bot are functioning correctly.
 
@@ -208,7 +218,7 @@ Run tests with:
 
 pytest
 
-🔍 Code Quality (ruff)
+## 🔍 Code Quality (ruff)
 
 Install:
 
@@ -219,7 +229,7 @@ Check code:
 
 ruff check .
 
-📸 Screenshots
+## 📸 Screenshots
 <img width="1639" height="629" alt="image" src="https://github.com/user-attachments/assets/f0159efc-ea7a-418c-8df2-535327fe16e3" />
 <img width="1878" height="867" alt="image" src="https://github.com/user-attachments/assets/525b02c6-2eec-46ac-9b6b-5096c4248236" />
 <img width="1847" height="815" alt="image" src="https://github.com/user-attachments/assets/48854db5-0a54-4ccd-bc27-59a78a7f8d95" />
@@ -229,7 +239,7 @@ ruff check .
 
 
 
-📚 Medium Article
+## 📚 Medium Article
 
 A Medium article about the project explains motivation, architecture, challenges, setup steps, and final result.
 
@@ -237,7 +247,7 @@ A Medium article about the project explains motivation, architecture, challenges
 
 
 
-♦ Conclusion
+## Conclusion
 
 This project demonstrates a complete end-to-end AI automation system using Python and modern cloud tools:
 
@@ -254,6 +264,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
