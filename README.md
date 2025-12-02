@@ -94,25 +94,6 @@ Create virtual environment:
 
 python -m venv venv
 venv\Scripts\activate   # Windows
-# or
-source venv/bin/activate  # Mac/Linux
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-Export environment variables:
-
-set TELEGRAM_BOT_TOKEN=your_token_here
-set OPENAI_API_KEY=your_key_here
-set N8N_WEBHOOK_URL=https://your-n8n-url/webhook/xxx
-
-
-Run the bot:
-
-python bot.py
 
 
 ## 🤖 How the Bot Works (Flow Description)
@@ -264,6 +245,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
