@@ -152,11 +152,9 @@ photo_description	{{$json["body"]["description"]}}
 
 Config:
 
-Operation: Convert to CSV
+Operation: Data Table
 
-Put output file in: data
-
-File name: telegram_ai_logs.csv
+Insert Row
 
 Add options:
 
@@ -203,12 +201,12 @@ pytest
 
 Install:
 
-pip install ruff
+```pip install ruff```
 
 
 Check code:
 
-ruff check .
+```ruff check .```
 
 ## 📸 Screenshots
 <img width="1639" height="629" alt="image" src="https://github.com/user-attachments/assets/f0159efc-ea7a-418c-8df2-535327fe16e3" />
@@ -245,6 +243,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
