@@ -142,13 +142,21 @@ Output stored under json.body
 Converts incoming JSON into a clean record:
 
 Field	Expression
+
 timestamp	{{$now}}
+
 type	{{$json["body"]["type"]}}
+
 user_id	{{$json["body"]["user_id"]}}
+
 username	{{$json["body"]["username"]}}
+
 message	{{$json["body"]["message"]}}
+
 reply	{{$json["body"]["reply"]}}
+
 photo_description	{{$json["body"]["description"]}}
+
 ✔ Node 3 — Convert to CSV
 
 Config:
@@ -215,7 +223,6 @@ ruff check .
 <img width="1639" height="629" alt="image" src="https://github.com/user-attachments/assets/f0159efc-ea7a-418c-8df2-535327fe16e3" />
 <img width="1878" height="867" alt="image" src="https://github.com/user-attachments/assets/525b02c6-2eec-46ac-9b6b-5096c4248236" />
 <img width="1847" height="815" alt="image" src="https://github.com/user-attachments/assets/48854db5-0a54-4ccd-bc27-59a78a7f8d95" />
-<img width="641" height="766" alt="image" src="https://github.com/user-attachments/assets/04d86051-7f08-46da-9d46-2536ad09d7e4" />
 <img width="1888" height="909" alt="image" src="https://github.com/user-attachments/assets/011e9277-de05-4d5e-b52f-c2a36c235b8b" />
 <img width="1170" height="647" alt="image" src="https://github.com/user-attachments/assets/70841a54-d689-42b2-966a-a46dec66119f" />
 <img width="1137" height="905" alt="image" src="https://github.com/user-attachments/assets/a0770c64-701f-44e2-99d7-c030a9cd593d" />
@@ -247,6 +254,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
