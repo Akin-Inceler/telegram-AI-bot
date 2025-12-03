@@ -1,4 +1,4 @@
-# 📦 Telegram AI Bot — Python + OpenAI + n8n Automation + Railway Deployment
+#  Telegram AI Bot — Python + OpenAI + n8n Automation + Railway Deployment
 
 This project is a fully functional, production-ready Telegram bot powered by Python, OpenAI (ChatGPT + Vision), n8n automation, and deployed on Railway.
 The bot can:
@@ -51,9 +51,9 @@ OpenAI API (ChatGPT + Vision)
 n8n Automation Workflow
         ↓
         
-CSV Log Output (structured conversation logs)
+Data Table Output (structured conversation logs)
 
-## 📁 Project Structure
+##  Project Structure
 ├── bot.py                # Main Telegram bot application
 
 ├── requirements.txt      # Dependencies
@@ -64,7 +64,7 @@ CSV Log Output (structured conversation logs)
 
 └── README.md             # Documentation
 
-## 🔧 Technologies Used
+##  Technologies Used
 Component	Technology
 Bot backend	Python 3.x
 Telegram API	python-telegram-bot
@@ -82,7 +82,7 @@ Testing	pytest
 @AkinsAI_bot
 
 
-▶️ Running Locally
+### Running Locally
 
 Clone the repository:
 
@@ -96,7 +96,7 @@ python -m venv venv
 venv\Scripts\activate   # Windows
 
 
-## 🤖 How the Bot Works (Flow Description)
+##  How the Bot Works (Flow Description)
 ### 1. Text messages
 
 User sends text
@@ -119,8 +119,8 @@ Bot returns analysis
 
 Bot logs result to n8n → CSV
 
-## 🔄 n8n Automation Setup
-✔ Node 1 — Webhook
+##  n8n Automation Setup
+### Node 1 — Webhook
 
 Method: POST
 
@@ -128,7 +128,7 @@ Use Production URL, not Test URL
 
 Output stored under json.body
 
-✔ Node 2 — Edit Fields
+### Node 2 — Edit Fields
 
 Converts incoming JSON into a clean record:
 
@@ -148,7 +148,7 @@ reply	{{$json["body"]["reply"]}}
 
 photo_description	{{$json["body"]["description"]}}
 
-✔ Node 3 — Convert to CSV
+### Node 3 — Convert to CSV
 
 Config:
 
@@ -164,7 +164,7 @@ Header Row: checked (true)
 
 Result → A properly formatted spreadsheet row.
 
-## ☁️ Deployment (Railway)
+##  Deployment (Railway)
 
 Create new Railway project
 
@@ -176,13 +176,13 @@ Deploy
 
 Railway automatically rebuilds and restarts the bot on each Git push.
 
-## 🧪 Testing (pytest)
+##  Testing (pytest)
 
-### 🧪 Testing
+###  Testing
 
 This project includes a simple automated test suite using pytest, ensuring that the core components of the Telegram bot are functioning correctly.
 
-✔ What the tests check
+### What the tests check
 
 The tests focus on basic structural validation:
 
@@ -194,21 +194,26 @@ Ensures that the data sent to n8n automation contains all required fields (type,
 
 
 Run tests with:
-
+```
 pytest
+```
 
-## 🔍 Code Quality (ruff)
+##  Code Quality (ruff)
 
 Install:
 
-```pip install ruff```
+```
+pip install ruff
+```
 
 
 Check code:
 
-```ruff check .```
+```
+ruff check .
+```
 
-## 📸 Screenshots
+##  Screenshots
 <img width="1639" height="629" alt="image" src="https://github.com/user-attachments/assets/f0159efc-ea7a-418c-8df2-535327fe16e3" />
 <img width="1878" height="867" alt="image" src="https://github.com/user-attachments/assets/525b02c6-2eec-46ac-9b6b-5096c4248236" />
 <img width="1847" height="815" alt="image" src="https://github.com/user-attachments/assets/48854db5-0a54-4ccd-bc27-59a78a7f8d95" />
@@ -218,11 +223,11 @@ Check code:
 
 
 
-## 📚 Medium Article
+##  Medium Article
 
 A Medium article about the project explains motivation, architecture, challenges, setup steps, and final result.
 
-👉 Link: ([Click!](https://medium.com/@akin2001inceler/building-an-ai-powered-telegram-bot-with-python-openai-n8n-automation-and-railway-deployment-315962da405e))
+* Link: ([Click!](https://medium.com/@akin2001inceler/building-an-ai-powered-telegram-bot-with-python-openai-n8n-automation-and-railway-deployment-315962da405e))
 
 
 
@@ -243,6 +248,7 @@ Server deployment
 Logging and storage
 
 It meets all rubric requirements for automation, LLM usage, deployment, code quality, documentation, and presentation.
+
 
 
 
